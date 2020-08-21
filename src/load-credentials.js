@@ -8,14 +8,14 @@ const { blue, orangeString } = require("./util")
 
 const prettify = (name) => name.replace(/_/g, " ").toLowerCase()
 
-function askValue(name, questionPrefix) {
+function askValue(name, questionPrefix, oldValue) {
     const question = chalk`{reset ${questionPrefix}, what's the} {bold ${prettify(name)}}?`
     return inquirer.prompt({
         name: name,
         message: question,
         prefix: chalk`{${orangeString} *}`,
         validate(input) {
-            return validateCredentials(name, input)
+            return validateCredentials(name, input, oldValue)
         },
         transformer(input) {
             return blue(name.endsWith("PASSWORD") ? "*".repeat(input.length) : input)
@@ -44,15 +44,16 @@ module.exports = async function(filepath) {
     }
 
     for (name of credentialNames) {
+        const oldName = name.startsWith("NEW") ? name.replace("NEW", "OLD") : null
         if (!env[name]) {
             if (!process.stdin.isTTY) {
                 console.log(chalk`{red {redBright ${name}} not provided in env file.}`)
                 process.exit(1)
             }
-            const answer = await askValue(name, fileRead ? "Not provided in env file" : "Env file not provided")
+            const answer = await askValue(name, fileRead ? "Not provided in env file" : "Env file not provided", env[oldName])
             env[name] = answer[name]
         } else {
-            const error = validateCredentials(name, env[name])
+            const error = validateCredentials(name, env[name], env[oldName])
             if (typeof error === "string") {
                 console.log(chalk`{redBright ${name}:} {red ${error}}`)
                 const answer = await askValue(name, "Invalid value")
