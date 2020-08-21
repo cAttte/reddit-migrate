@@ -24,7 +24,7 @@ function askValue(name, questionPrefix, oldValue) {
 }
 
 const credentialNames = ["OLD_USERNAME", "OLD_PASSWORD", "NEW_USERNAME", "NEW_PASSWORD"]
-module.exports = async function(filepath) {
+module.exports = async function loadCredentials(filepath) {
     let fileRead = false
     const env = {}
     if (filepath) {

@@ -2,7 +2,7 @@ const { stripIndent } = require("common-tags")
 const chalk = require("chalk")
 const { blue, orangeString, blueString } = require("./util")
 
-module.exports = function() {
+module.exports = function helpInformation() {
     this.options.unshift({ flags: this._helpFlags, description: this._helpDescription })
     const help = stripIndent(chalk`
         {${orangeString} reddit-migrate} {${bgOrangeString}  }
