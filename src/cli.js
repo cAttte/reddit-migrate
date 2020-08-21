@@ -11,6 +11,7 @@ async function main() {
         .helpOption("-h, --help", "Display command help")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from", )
         .option("-s, --subreddit-output <path>", "Path of output file for retrieved subreddits")
+        .option("-r, --register", "Whether to register a new account with the provided new credentials")
 
     cli.parse(process.argv)
     // await loadCredentials(cli.envFile)
