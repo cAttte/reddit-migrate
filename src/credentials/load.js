@@ -3,7 +3,7 @@ const path = require("path")
 const chalk = require("chalk")
 const dotenv = require("dotenv")
 const inquirer = require("inquirer")
-const validateCredentials = require("./validate-credentials")
+const validateCredentials = require("./validate")
 const { blue, orangeString } = require("./util")
 
 const prettify = (name) => name.replace(/_/g, " ").toLowerCase()

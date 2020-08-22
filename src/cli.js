@@ -3,7 +3,7 @@ const chalk = require("chalk")
 const cli = require("commander").program
 
 cli.helpInformation = require("./help")
-const loadCredentials = require("./load-credentials")
+const loadCredentials = require("./credentials/load")
 
 process.on("unhandledRejection", error => {
     console.log(chalk`{red Unexpected Error:} {redBright ${error.message}}`)
