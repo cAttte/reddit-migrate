@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 const chalk = require("chalk")
-const { orangeString, bgOrangeString } = require("./util")
+const { orangeString, bgOrangeString, error } = require("./util")
 const cli = require("commander").program
 
 cli.helpInformation = require("./help")
 const loadCredentials = require("./credentials/load")
 
-process.on("unhandledRejection", error => {
-    console.log(chalk`{red Unexpected Error:} {redBright ${error.message}}`)
-    const stack = chalk.gray((error.stack.match(/\n    at(.+(reddit-migrate.src).+)/g) || []).join("\n"))
-    console.log(stack)
+process.on("unhandledRejection", ({ message, stack }) => {
+    console.log(error(`Unexpected Error: {${message}}`))
+    const prettyStack = chalk.gray((stack.match(/    at(.+(reddit-migrate.src).+)/g) || []).join("\n"))
+    console.log(prettyStack)
 })
 
 async function main() {
@@ -23,10 +23,8 @@ async function main() {
         .option("-m, --import", "Whether to only import data; not migrate from a new account")
         .option("-x, --export", "Whether to only export data; not migrate to a new account")
     cli.parse(process.argv)
-    if (cli.import && cli.export) {
-        console.log(chalk`{red Only one of {redBright --import} and {redBright --export} can be specified.}`)
-        process.exit(1)
-    }
+    if (cli.import && cli.export)
+        error("Only one of {--import} and {--export} can be specified.")
 
     const credentials = await loadCredentials(cli)
 }
