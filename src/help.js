@@ -1,6 +1,6 @@
 const { stripIndent } = require("common-tags")
 const chalk = require("chalk")
-const { blue, bgOrangeString, orangeString, blueString } = require("./util")
+const { blue, blueString } = require("./util")
 
 module.exports = function helpInformation() {
     this.options.unshift({ flags: this._helpFlags, description: this._helpDescription })
