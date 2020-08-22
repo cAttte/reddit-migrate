@@ -11,5 +11,7 @@ module.exports = function validateCredentials(name, input, oldInput) {
             return "Password must be at least 6 characters long."
         else
             return true
+    } else if (name.endsWith("CLIENT_ID") || name.endsWith("CLIENT_SECRET")) {
+        return true
     }
 }
