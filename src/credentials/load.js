@@ -26,9 +26,12 @@ function askValue(name, questionPrefix, oldValue) {
 
 const credentials = ["CLIENT_ID", "CLIENT_SECRET", "USERNAME", "PASSWORD"]
 module.exports = async function loadCredentials(cli) {
-    const credentialNames = credentials
-        .map(n => "OLD_" + n)
-        .concat(cli.export ? [] : credentials.map(n => "NEW_" + n))
+    let credentialNames = []
+    if (cli.export || !cli.import)
+        credentialNames = credentialNames.concat(credentials.map(c => "OLD_" + c))
+    else if (cli.import || !cli.export)
+        credentialNames = credentialNames.concat(credentials.map(c => "NEW_" + c))
+
     const filepath = cli.envFile
     let fileRead = false
     const env = {}
