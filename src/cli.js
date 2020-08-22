@@ -3,7 +3,7 @@ const chalk = require("chalk")
 const cli = require("commander").program
 
 cli.helpInformation = require("./help")
-// const loadCredentials = require("./load-credentials")
+const loadCredentials = require("./load-credentials")
 
 process.on("unhandledRejection", error => {
     console.log(chalk`{red Unexpected Error:} {redBright ${error.message}}`)
@@ -19,7 +19,7 @@ async function main() {
         .option("-x, --export", "Whether to only export data; not migrate to a new account")
 
     cli.parse(process.argv)
-    // await loadCredentials(cli.envFile)
+    const credentials = await loadCredentials(cli)
 }
 
 main()
