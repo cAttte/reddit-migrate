@@ -13,7 +13,7 @@ module.exports = function helpInformation() {
         {bold Options:}
             ${
                 this.options.map(option =>
-                    option.flags.padEnd(32) + blue(option.description)
+                    option.flags.padEnd(24) + blue(option.description)
                 ).join("\n" + " ".repeat(12))
             }
         {reset  }
