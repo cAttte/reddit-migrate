@@ -29,7 +29,7 @@ module.exports = async function loadCredentials(cli) {
     let credentialNames = []
     if (cli.export || !cli.import)
         credentialNames = credentialNames.concat(credentials.map(c => "OLD_" + c))
-    else if (cli.import || !cli.export)
+    if (cli.import || !cli.export)
         credentialNames = credentialNames.concat(credentials.map(c => "NEW_" + c))
 
     const filepath = cli.envFile
