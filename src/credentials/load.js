@@ -4,7 +4,7 @@ const chalk = require("chalk")
 const dotenv = require("dotenv")
 const inquirer = require("inquirer")
 const validateCredentials = require("./validate")
-const { blue, orangeString } = require("../util")
+const { blue, orangeString, error } = require("../util")
 
 const prettify = (name) => name.replace(/_/g, " ").toLowerCase()
 
@@ -37,7 +37,7 @@ module.exports = async function loadCredentials(cli) {
     const env = {}
     if (filepath) {
         const buffer = await fs.promises.readFile(path.resolve(filepath))
-            .catch(() => console.log(chalk`{red Couldn't read file {redBright ${filepath}}.}`))
+            .catch(() => error(`Couldn't read file {${filepath}}.`))
         if (buffer) {
             const parsed = dotenv.parse(buffer)
             Object.assign(env, parsed)
@@ -46,24 +46,20 @@ module.exports = async function loadCredentials(cli) {
         }
     }
 
-    if (!filepath && !process.stdin.isTTY) {
-        console.log(chalk.red("Env file not provided."))
-        process.exit(1)
-    }
+    if (!filepath && !process.stdin.isTTY)
+        error("Env file not provided.")
 
     for (name of credentialNames) {
         const oldName = name.startsWith("NEW") ? name.replace("NEW", "OLD") : null
         if (!env[name]) {
-            if (!process.stdin.isTTY) {
-                console.log(chalk`{red {redBright ${name}} not provided in env file.}`)
-                process.exit(1)
-            }
+            if (!process.stdin.isTTY)
+                error(`{${name}} not provided in env file.`)
             const answer = await askValue(name, fileRead ? "Not provided in env file" : "Env file not provided", env[oldName])
             env[name] = answer[name]
         } else {
             const error = validateCredentials(name, env[name], env[oldName])
             if (typeof error === "string") {
-                console.log(chalk`{redBright ${name}:} {red ${error}}`)
+                error(`{${name}:} ${error}`, false)
                 const answer = await askValue(name, "Invalid value")
                 env[name] = answer[name]
             }
