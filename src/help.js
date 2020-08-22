@@ -5,8 +5,6 @@ const { blue, bgOrangeString, orangeString, blueString } = require("./util")
 module.exports = function helpInformation() {
     this.options.unshift({ flags: this._helpFlags, description: this._helpDescription })
     const help = stripIndent(chalk`
-        {${orangeString} reddit-migrate} {${bgOrangeString}  }
-
         {bold Usage:}
             reddit-migrate {${blueString} [options]}
 

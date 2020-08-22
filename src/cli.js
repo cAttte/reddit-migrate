@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const chalk = require("chalk")
+const { orangeString, bgOrangeString } = require("./util")
 const cli = require("commander").program
 
 cli.helpInformation = require("./help")
@@ -12,6 +13,8 @@ process.on("unhandledRejection", error => {
 })
 
 async function main() {
+    console.log(chalk`{${orangeString} reddit-migrate} {${bgOrangeString}  }\n`)
+
     cli
         .helpOption("-h, --help", "Display command help")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
