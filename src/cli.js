@@ -1,10 +1,15 @@
 #!/usr/bin/env node
-const dotenv = require("dotenv")
 const chalk = require("chalk")
 const cli = require("commander").program
 
 cli.helpInformation = require("./help")
 // const loadCredentials = require("./load-credentials")
+
+process.on("unhandledRejection", error => {
+    console.log(chalk`{red Unexpected Error:} {redBright ${error.message}}`)
+    const stack = chalk.gray(error.stack.match(/(\n    at(.+(reddit-migrate.src).+))+/g).join("\n"))
+    console.log(stack)
+})
 
 async function main() {
     cli
