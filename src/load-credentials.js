@@ -18,13 +18,17 @@ function askValue(name, questionPrefix, oldValue) {
             return validateCredentials(name, input, oldValue)
         },
         transformer(input) {
-            return blue(name.endsWith("PASSWORD") ? "*".repeat(input.length) : input)
+            return blue(name.endsWith("PASSWORD") || name.endsWith("SECRET") ?
+                "*".repeat(input.length) : input)
         }
     })
 }
 
-const credentialNames = ["OLD_USERNAME", "OLD_PASSWORD", "NEW_USERNAME", "NEW_PASSWORD"]
+const credentials = ["CLIENT_ID", "CLIENT_SECRET", "USERNAME", "PASSWORD"]
 module.exports = async function loadCredentials(cli) {
+    const credentialNames = credentials
+        .map(n => "OLD_" + n)
+        .concat(cli.export ? [] : credentials.map(n => "NEW_" + n))
     const filepath = cli.envFile
     let fileRead = false
     const env = {}
