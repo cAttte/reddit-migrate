@@ -1,13 +1,10 @@
 const package = require("../package.json")
 const chalk = require("chalk")
-const { Spinner } = require("cli-spinner")
+const { spin } = require("./util")
 const Snoowrap = require("snoowrap")
 
 module.exports = async function login(id, secret, username, password) {
-    const spinner = new Spinner()
-        .setSpinnerTitle(chalk`{yellow %s Attempting to login as} {yellowBright ${username}}{yellow ...}`)
-        .setSpinnerString(0)
-        .start()
+    const spinner = spin(`Attempting to login as {${username}}...`)
 
     const reddit = new Snoowrap({
         userAgent: `reddit-migrate@${package.version} | github.com/cAttte/reddit-migrate`,
