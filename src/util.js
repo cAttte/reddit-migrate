@@ -13,9 +13,9 @@ const blueString = "rgb(113,147,255)"
 
 // symbols
 const symbols = {
-    info: util.blue(stripANSI(symbols.success)),
-    ...logSymbols
-},
+    ...logSymbols,
+    info: blue(stripANSI(logSymbols.info))
+}
 
 // logging
 function highlight(string, color) {
