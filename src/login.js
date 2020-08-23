@@ -1,5 +1,5 @@
 const package = require("../package.json")
-const { success, error, spin } = require("./util")
+const { formatSuccess, formatError, spin } = require("./util")
 const Snoowrap = require("snoowrap")
 
 module.exports = async function login(id, secret, username, password) {
@@ -14,10 +14,9 @@ module.exports = async function login(id, secret, username, password) {
     })
 
     await reddit.getMe().catch(({ message }) => {
-        spinner.fail(error(`Couldn't log in as {${username}}: {${message}}`, false))
+        spinner.fail(formatError(`Couldn't log in as {${username}}: {${message}}`))
     })
 
-    spinner.stop(true)
-    success(`Successfully logged in as {${username}}.`)
+    spinner.succeed(formatSuccess(`Successfully logged in as {${username}}.`))
     return reddit
 }
