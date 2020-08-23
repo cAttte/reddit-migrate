@@ -38,14 +38,13 @@ module.exports = async function loadCredentials(cli) {
     if (filepath) {
         const spinner = spin(`Loading {${filepath}}...`)
         const buffer = await fs.promises.readFile(path.resolve(filepath))
-            .catch(() => {
-                spinner.fail(formatError(`Couldn't read {${filepath}}.`))
-                process.exit(1)
-            })
-        const parsed = dotenv.parse(buffer)
-        Object.assign(env, parsed)
-        fileRead = true
-        spinner.succeed(formatSuccess(`Loaded {${filepath}}.`))
+            .catch(() => { spinner.fail(formatError(`Couldn't read {${filepath}}.`)) })
+        if (buffer) {
+            const parsed = dotenv.parse(buffer)
+            Object.assign(env, parsed)
+            fileRead = true
+            spinner.succeed(formatSuccess(`Loaded {${filepath}}.`))
+        }
     }
 
     if (!filepath && !process.stdin.isTTY)
