@@ -43,7 +43,7 @@ async function main() {
             cli.credentials.OLD_USERNAME,
             cli.credentials.OLD_PASSWORD
         )
-        const data = await exportData(cli, old)
+        const data = await exportData(old)
     }
 }
 
