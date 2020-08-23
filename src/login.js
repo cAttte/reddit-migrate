@@ -1,6 +1,6 @@
 const package = require("../package.json")
 const chalk = require("chalk")
-const { spin } = require("./util")
+const { error, spin } = require("./util")
 const Snoowrap = require("snoowrap")
 
 module.exports = async function login(id, secret, username, password) {
@@ -16,8 +16,7 @@ module.exports = async function login(id, secret, username, password) {
 
     await reddit.getMe().catch(({ message }) => {
         spinner.stop(true)
-        console.log(chalk`{red Couldn't log in as} {redBright ${username}}{red :} {redBright ${message}}{red .}`)
-        process.exit(1)
+        error(`Couldn't log in as {${username}}: {${message}}`)
     })
 
     spinner.stop(true)
