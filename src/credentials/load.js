@@ -4,7 +4,7 @@ const chalk = require("chalk")
 const dotenv = require("dotenv")
 const inquirer = require("inquirer")
 const validateCredentials = require("./validate")
-const { blue, orangeString, error } = require("../util")
+const { blue, orangeString, success, error } = require("../util")
 
 const prettify = (name) => name.replace(/_/g, " ").toLowerCase()
 
@@ -42,7 +42,7 @@ module.exports = async function loadCredentials(cli) {
             const parsed = dotenv.parse(buffer)
             Object.assign(env, parsed)
             fileRead = true
-            console.log(chalk`{green Loaded {greenBright ${filepath}}.}`)
+            success(`Loaded {${filepath}}.`)
         }
     }
 
