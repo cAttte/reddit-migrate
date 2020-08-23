@@ -3,10 +3,8 @@ const chalk = require("chalk")
 const ora = require("ora")
 
 const highlight = (string, color) => {
-    const colorize = chalk[color]
-    const colorizeBright = chalk[color + "Bright"]
-    const highlighted = string.replace(/{(.+?)}/g, (_, $1) => colorizeBright($1))
-    return colorize(highlighted)
+    const colorize = chalk[color + "Bright"]
+    return string.replace(/{(.+?)}/g, (_, $1) => colorize($1))
 }
 
 const util = {
