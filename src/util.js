@@ -15,12 +15,14 @@ module.exports = {
     bgOrangeString: "bgRgb(255,69,0)",
     blue: chalk.rgb(113, 147, 255),
     blueString: "rgb(113,147,255)",
-    success(message) {
-        console.log(highlight(message, "green"))
+    success(message, log = true) {
+        const string = highlight(message, "green")
+        return log ? console.log(string) : string
     },
-    error(message, exit = true) {
-        console.log(highlight(message, "red"))
+    error(message, log = true, exit = true) {
+        const string = highlight(message, "red")
         if (exit) process.exit(1)
+        return log ? console.log(string) : string
     },
     spin(message, options = {}) {
         const spinner = ora({
