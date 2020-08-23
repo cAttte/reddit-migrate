@@ -1,5 +1,5 @@
 const chalk = require("chalk")
-const { Spinner } = require("cli-spinner")
+const ora = require("ora")
 
 const highlight = (string, color) => {
     const colorize = chalk[color]
@@ -22,11 +22,13 @@ module.exports = {
         console.log(highlight(message, "red"))
         if (exit) process.exit(1)
     },
-    spin(message) {
-        const spinner = new Spinner()
-            .setSpinnerTitle(highlight("%s " + message, "yellow"))
-            .setSpinnerString(0)
-            .start()
-        return spinner
+    spin(message, options = {}) {
+        const spinner = ora({
+            text: highlight(message, "yellow"),
+            spinner: "line",
+            color: "yellow",
+            ...options
+        })
+        return spinner.start()
     }
 }
