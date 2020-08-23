@@ -14,8 +14,7 @@ module.exports = async function login(id, secret, username, password) {
     })
 
     await reddit.getMe().catch(({ message }) => {
-        spinner.stop(true)
-        error(`Couldn't log in as {${username}}: {${message}}`)
+        spinner.fail(error(`Couldn't log in as {${username}}: {${message}}`, false))
     })
 
     spinner.stop(true)

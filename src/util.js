@@ -8,21 +8,25 @@ const highlight = (string, color) => {
     return colorize(highlighted)
 }
 
-module.exports = {
+const util = {
     orange: chalk.rgb(255, 69, 0),
     orangeString: "rgb(255,69,0)",
     bgOrange: chalk.bgRgb(255, 69, 0),
     bgOrangeString: "bgRgb(255,69,0)",
     blue: chalk.rgb(113, 147, 255),
     blueString: "rgb(113,147,255)",
-    success(message, log = true) {
-        const string = highlight(message, "green")
-        return log ? console.log(string) : string
+    formatSuccess(message) {
+        return highlight(message, "green")
     },
-    error(message, log = true, exit = true) {
-        const string = highlight(message, "red")
+    success(message) {
+        console.log(util.formatSuccess(message))
+    },
+    formatError(message) {
+        return highlight(message, "red")
+    },
+    error(message) {
+        console.log(util.formatError(message))
         if (exit) process.exit(1)
-        return log ? console.log(string) : string
     },
     spin(message, options = {}) {
         const spinner = ora({
@@ -34,3 +38,5 @@ module.exports = {
         return spinner.start()
     }
 }
+
+module.exports = util
