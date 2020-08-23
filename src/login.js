@@ -19,6 +19,6 @@ module.exports = async function login(id, secret, username, password) {
     })
 
     spinner.stop(true)
-    console.log(success(`Successfully logged in as {${username}}.`))
+    success(`Successfully logged in as {${username}}.`)
     return reddit
 }
