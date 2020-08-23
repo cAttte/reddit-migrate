@@ -15,6 +15,9 @@ module.exports = {
     bgOrangeString: "bgRgb(255,69,0)",
     blue: chalk.rgb(113, 147, 255),
     blueString: "rgb(113,147,255)",
+    success(message) {
+        console.log(highlight(message, "green"))
+    },
     error(message, exit = true) {
         console.log(highlight(message, "red"))
         if (exit) process.exit(1)
