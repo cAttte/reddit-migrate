@@ -4,7 +4,7 @@ const chalk = require("chalk")
 const dotenv = require("dotenv")
 const inquirer = require("inquirer")
 const validateCredentials = require("./validate")
-const { blue, orangeString, formatSuccess, formatError, spin } = require("../util")
+const { symbols, blue, formatSuccess, formatError, spin } = require("../util")
 
 const prettify = (name) => name.replace(/_/g, " ").toLowerCase()
 
@@ -13,7 +13,7 @@ function askValue(name, questionPrefix, oldValue) {
     return inquirer.prompt({
         name: name,
         message: question,
-        prefix: chalk`{${orangeString} *}`,
+        prefix: symbols.info,
         validate(input) {
             return validateCredentials(name, input, oldValue)
         },
