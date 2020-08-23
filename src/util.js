@@ -26,13 +26,13 @@ const util = {
         return highlight(message, "green")
     },
     success(message) {
-        console.log(util.formatSuccess(message))
+        console.log(`${util.symbols.success} ${util.formatSuccess(message)}`)
     },
     formatError(message) {
         return highlight(message, "red")
     },
-    error(message) {
-        console.log(util.formatError(message))
+    error(message, exit) {
+        console.log(`${util.symbols.error} ${util.formatError(message)}`)
         if (exit) process.exit(1)
     },
     spin(message, options = {}) {
