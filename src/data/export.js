@@ -1,4 +1,3 @@
-const fs = require("fs")
 const exportSubscriptions = require("./export/subscriptions")
 const exportFriends = require("./export/friends")
 const exportBlocked = require("./export/blocked")
