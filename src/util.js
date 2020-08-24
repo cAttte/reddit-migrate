@@ -28,6 +28,12 @@ function formatSuccess(message) {
 function success(message) {
     console.log(`${symbols.success} ${formatSuccess(message)}`)
 }
+function formatWarning(message) {
+    return highlight(message, "yellow")
+}
+function warning(message) {
+    console.log(`${symbols.warning} ${formatWarning(message)}`)
+}
 function formatError(message) {
     return highlight(message, "red")
 }
@@ -56,6 +62,8 @@ module.exports = {
     highlight,
     formatSuccess,
     success,
+    formatWarning,
+    warning,
     formatError,
     error,
     spin
