@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 const chalk = require("chalk")
-const { orangeString, bgOrangeString, error } = require("./util")
 const cli = require("commander").program
 
 cli.helpInformation = require("./help")
+const { orangeString, bgOrangeString, error } = require("./util")
 const loadCredentials = require("./credentials/load")
-const login = require("./login")
-const exportData = require("./data/export")
+const getData = require("./get-data")
 
 process.on("unhandledRejection", ({ message, stack }) => {
     console.log(error(`Unexpected Error: {${message}}`))
@@ -38,13 +37,7 @@ async function main() {
     cli.credentials = await loadCredentials(cli)
 
     if (cli.migrate) {
-        const old = await login(
-            cli.credentials.OLD_CLIENT_ID,
-            cli.credentials.OLD_CLIENT_SECRET,
-            cli.credentials.OLD_USERNAME,
-            cli.credentials.OLD_PASSWORD
-        )
-        const data = await exportData(old)
+        const data = await getData(cli)
     }
 }
 
