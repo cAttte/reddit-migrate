@@ -18,30 +18,17 @@ const symbols = {
 }
 
 // logging
-function highlight(string, color) {
-    const colorize = chalk[color + "Bright"]
-    return string.replace(/{(.+?)}/g, (_, $1) => colorize($1))
-}
-function formatSuccess(message) {
-    return highlight(message, "green")
-}
-function success(message) {
-    console.log(`${symbols.success} ${formatSuccess(message)}`)
-}
-function formatWarning(message) {
-    return highlight(message, "yellow")
-}
-function warning(message) {
-    console.log(`${symbols.warning} ${formatWarning(message)}`)
-}
-function formatError(message) {
-    return highlight(message, "red")
-}
-function error(message, exit) {
+const highlight = (string, color) => string.replace(/{(.+?)}/g, (_, $1) => chalk[color + "Bright"]($1))
+const formatSuccess = message => highlight(message, "green")
+const success = message => console.log(`${symbols.success} ${formatSuccess(message)}`)
+const formatWarning = message => highlight(message, "yellow")
+const warning = message => console.log(`${symbols.warning} ${formatWarning(message)}`)
+const formatError = message => highlight(message, "red")
+const error = (message, exit = true) => {
     console.log(`${symbols.error} ${formatError(message)}`)
     if (exit) process.exit(1)
 }
-function spin(message, options = {}) {
+const spin = (message, options = {}) => {
     const spinner = ora({
         text: highlight(message, "yellow"),
         spinner: "line",
