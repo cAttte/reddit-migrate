@@ -19,6 +19,8 @@ module.exports = function helpCommand(commandName) {
         const command = this.commands.find(c => c._name === commandName.toLowerCase())
         if (!command) error(`Unknown command {${commandName}}.`)
         console.log(stripIndent(chalk`
+            ${command._description}
+
             {bold Usage:}
                 ${command._name} {${blueString} [options]}
 
