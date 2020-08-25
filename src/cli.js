@@ -21,6 +21,8 @@ async function main() {
     cli.name("reddit-migrate")
         .usage("[command] [options]")
         .action(migrateCommand.bind(cli))
+        .helpOption(`--${Math.random()}`, "")
+            // this is kinda the only way i thought of to "remove" the help option...
 
     cli.command("help [command]")
         .description("Display command help")
@@ -43,6 +45,7 @@ async function main() {
         .requiredOption("-i, --input <path>", "Path of input file")
         .action(importCommand.bind(cli))
 
+    cli.commands = cli.commands.map(c => c.helpOption(`--${Math.random()}`, ""))
     cli.parse(process.argv)
 }
 
