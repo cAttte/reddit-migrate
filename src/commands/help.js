@@ -6,7 +6,7 @@ module.exports = function helpCommand(commandName) {
     if (!commandName || commandName.toLowerCase() === "help") {
         console.log(stripIndent(chalk`
             {bold Usage:}
-                reddit-migrate {${blueString} [options]}
+                reddit-migrate {${blueString} [command] [options]}
 
             {bold Commands:}
                 ${
