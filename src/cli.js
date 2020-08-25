@@ -32,13 +32,13 @@ async function main() {
     cli.command("export")
         .description("Export data from a reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
-        .option("-o, --output <path>", "Path of output file")
+        .requiredOption("-o, --output <path>", "Path of output file")
         .action(exportCommand.bind(cli))
 
     cli.command("import")
         .description("Import data to a reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
-        .option("-i, --input <path>", "Path of input file")
+        .requiredOption("-i, --input <path>", "Path of input file")
         .action(importCommand.bind(cli))
 
     cli.parse(process.argv)
