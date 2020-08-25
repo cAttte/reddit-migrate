@@ -19,8 +19,10 @@ async function main() {
     console.log(chalk`{${orangeString} reddit-migrate} {${bgOrangeString}  }\n`)
 
     cli.name("reddit-migrate")
-        .usage("<command> [options]")
-        .command("help [command]")
+        .usage("[command] [options]")
+        .action(migrateCommand.bind(cli))
+
+    cli.command("help [command]")
         .description("Display command help")
         .action(helpCommand.bind(cli))
 
