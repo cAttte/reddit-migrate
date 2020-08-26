@@ -7,8 +7,8 @@ module.exports = async function importFriends(reddit, data) {
     const spinner = spin("Friending users...")
     let succeeded = 0
     let failed = 0
-    for (i = 0; i < data.length; i++) {
-        const user = await reddit.getUser(data[i])
+    for (username of data) {
+        const user = await reddit.getUser(username)
         await user.friend()
             .then(() => succeeded++)
             .catch(() => failed++)
