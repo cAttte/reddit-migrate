@@ -1,7 +1,8 @@
 const { highlight, formatSuccess, formatError, spin, error } = require("../../util")
 
 module.exports = async function importSubscriptions(reddit, data) {
-    if (!data || !Array.isArray(data)) error("Subreddits unavailable.", false)
+    if (!data || !Array.isArray(data) || !data.length)
+        return error("No subreddits to subscribe to.", false)
     const spinner = spin("Subscribing to subreddits...")
     let succeeded = 0
     let failed = 0
