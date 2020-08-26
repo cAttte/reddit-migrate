@@ -7,8 +7,7 @@ async function subscribe(reddit, data, { action, actioning, actioned, object }) 
     const spinner = spin(`${actioning} ${object}s...`)
     let succeeded = 0
     let failed = 0
-    for (i = 0; i < data.length; i++) {
-        const name = data[i]
+    for (name of data) {
         const sub = await reddit.getSubreddit(name)
         await sub.subscribe()
             .then(() => succeeded++)
