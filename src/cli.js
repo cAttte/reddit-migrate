@@ -40,6 +40,7 @@ async function main() {
         .description("Export data from a reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
         .requiredOption("-o, --output <path>", "Path of output file")
+        .option("-p, --pretty", "Whether to prettify the output JSON")
         .action(exportCommand.bind(cli))
 
     cli.command("import")
