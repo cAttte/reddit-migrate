@@ -7,7 +7,7 @@ const exportPreferences = require("./export/preferences")
 
 module.exports = async function exportData(reddit) {
     const data = {
-        exported_at: new Date().toISOString(),
+        exported_at: null,
         ...await exportSubscriptions(reddit), // { subreddits, users }
         friends: await exportFriends(reddit),
         blocked: await exportBlocked(reddit),
@@ -15,5 +15,6 @@ module.exports = async function exportData(reddit) {
         profile: await exportProfile(reddit),
         preferences: await exportPreferences(reddit)
     }
+    data.exported_at = new Date().toISOString()
     return data
 }
