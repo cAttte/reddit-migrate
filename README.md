@@ -5,13 +5,7 @@ Migrates subscribed subreddits, followed users, friends, blocked users, multired
 
 ## Installation
 ```
-npm i -g reddit-migrate
-```
-or
-```
-git clone cAttte/reddit-migrate
-cd reddit-migrate
-npm i -g .
+npm i -g cAttte/reddit-migrate
 ```
 
 ## Usage
