@@ -29,8 +29,8 @@ module.exports = async function exportCommand(self) {
 
     if (write)
         await fs.writeFile(output, JSON.stringify(data, null, self.pretty ? 4 : 0))
-            .then(() => spinner.succeed(formatSuccess(`Saved data to {${output}}.\n`)))
-            .catch(e => spinner.fail(formatError(`Couldn't save data to {${output}}: ${e.message}\n`)))
+            .then(() => spinner.succeed(formatSuccess(`Saved data to {${output}}.`)))
+            .catch(e => spinner.fail(formatError(`Couldn't save data to {${output}}: ${e.message}`)))
     else
-        error(`Couldn't save data to {${output}}: File already exists.\n`, false)
+        error(`Couldn't save data to {${output}}: File already exists.`, false)
 }
