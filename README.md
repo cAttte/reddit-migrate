@@ -1,5 +1,7 @@
 # reddit-migrate
-A tool written in JavaScript to migrate reddit accounts!
+A CLI written in JavaScript to migrate, export and import reddit account data!
+
+Migrates subscribed subreddits, followed users, friends, blocked users, multireddits, profile settings and account preferences.
 
 ## Installation
 ```
