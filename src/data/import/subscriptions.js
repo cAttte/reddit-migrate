@@ -2,7 +2,7 @@ const { highlight, formatSuccess, formatError, spin, error } = require("../../ut
 
 async function subscribe(reddit, data, { action, actioning, actioned, object }) {
     if (!data || !Array.isArray(data) || !data.length)
-        error(`No ${object}s to ${action}.`, false)
+        return error(`No ${object}s to ${action}.`, false)
 
     const spinner = spin(`${actioning} ${object}s...`)
     let succeeded = 0
