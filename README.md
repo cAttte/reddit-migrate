@@ -57,6 +57,7 @@ This project is licensed under the [**MIT License**](https://en.wikipedia.org/wi
 
 ## TODO
 
+- [ ] Migrate/import profile picture and banner; these are not imported correctly with the URLs.
 - [ ] Add an option to specify which data should be import/exported/migrated, something like `--types subreddits,follows,blocks`.
 - [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
 - [ ] Add a feature to mass delete comments and posts, optionally editing them before.
