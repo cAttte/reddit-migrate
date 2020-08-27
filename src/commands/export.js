@@ -1,5 +1,6 @@
 const fs = require("fs/promises")
 const path = require("path")
+const chalk = require("chalk")
 const inquirer = require("inquirer")
 
 const { spin, formatSuccess, formatError, error, symbols, blue } = require("../util")
@@ -21,7 +22,7 @@ module.exports = async function exportCommand(self) {
         const { overwrite } = await inquirer.prompt({
             name: "overwrite",
             type: "confirm",
-            message: `Overwrite ${blue(self.output)}?`,
+            message: chalk.reset(`Overwrite ${blue(self.output)}?`),
             prefix: symbols.info
         })
         write = overwrite
