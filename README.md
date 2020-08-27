@@ -54,7 +54,7 @@ reddit-migrate export [options]
 ### Credentials
 As seen in the command options, you can pass the path/filename of a `.env` file, containing the credentials of the reddit account(s). However, if it's not provided (or the credentials are not included in the file), the CLI will prompt you to enter them:
 
-![](https://i.imgur.com/BxJ8yiL.png)
+![](https://i.imgur.com/VthnmSR.png)
 
 Check out [**example.env**](https://github.com/cAttte/reddit-migrate/blob/master/example.env) to find out how the file should look for each command.
 
