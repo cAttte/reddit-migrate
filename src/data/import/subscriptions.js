@@ -29,7 +29,7 @@ module.exports = async function importSubscriptions(reddit, subreddits, users) {
         actioned: "Subscribed to",
         object: "subreddit"
     })
-    await subscribe(reddit, users.map(u => `u_${u}`), {
+    await subscribe(reddit, users ? users.map(u => `u_${u}`) : users, {
         action: "follow",
         actioning: "Following",
         actioned: "Followed",
