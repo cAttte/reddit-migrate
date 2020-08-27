@@ -17,44 +17,36 @@ reddit-migrate [command] [options]
 
 #### help
 Display command help.
-
-##### Usage
 ```
 reddit-migrate help [command]
 ```
 
 #### migrate
 Migrate to a new reddit account.
-
-##### Usage
 ```
 reddit-migrate migrate [options]
 ```
 
-##### Options
+**Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
 
 #### import
 Import data to a reddit account.
-
-##### Usage
 ```
 reddit-migrate import [options]
 ```
 
-##### Options
+**Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
 - `-i <path>`, `--input <path>`: Path of the input file.
 
 #### export
 Export data from a reddit account.
-
-##### Usage
 ```
 reddit-migrate export [options]
 ```
 
-##### Options
+**Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
 - `-o <path>`, `--output <path>`: Path of the output file.
 - `-p`, `--pretty`: Whether to prettify the output JSON.
