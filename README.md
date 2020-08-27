@@ -51,6 +51,19 @@ reddit-migrate export [options]
 - `-o <path>`, `--output <path>`: Path of the output file.
 - `-p`, `--pretty`: Whether to prettify the output JSON.
 
+### Credentials
+As seen in the command options, you can pass the path/filename of a `.env` file, containing the credentials of the reddit account(s). However, if it's not provided (or the credentials are not included in the file), the CLI will prompt you to enter them:
+
+![](https://i.imgur.com/X6ut2vq.png)
+
+Check out [**example.env**](https://github.com/cAttte/reddit-migrate/blob/master/example.env) to find out how the file should look for each command.
+
+#### Obtaining CLIENT_ID and CLIENT_SECRET
+- Head over to the [**Apps**](https://www.reddit.com/prefs/apps) section of your reddit account preferences.
+- Click the **create app** button.
+- Put whatever in the **name** and **redirect uri** fields. Make sure to select the **script** app type.
+- Your client ID will show below the **"personal use script,"** which is below the app name. The secret will be shown next to the other app info.
+
 ## License
 
 This project is licensed under the [**MIT License**](https://en.wikipedia.org/wiki/MIT_License). Check out [LICENSE.md](https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md) for more info.
