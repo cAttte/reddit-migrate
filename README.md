@@ -9,4 +9,65 @@ npm i -g cAttte/reddit-migrate
 ```
 
 ## Usage
-uhh
+```
+reddit-migrate [command] [options]
+```
+
+### Commands
+
+#### help
+Display command help.
+
+##### Usage
+```
+reddit-migrate help [command]
+```
+
+#### migrate
+Migrate to a new reddit account.
+
+##### Usage
+```
+reddit-migrate migrate [options]
+```
+
+##### Options
+- `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
+
+#### import
+Import data to a reddit account.
+
+##### Usage
+```
+reddit-migrate import [options]
+```
+
+##### Options
+- `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
+- `-i <path>`, `--input <path>`: Path of the input file.
+
+#### export
+Export data from a reddit account.
+
+##### Usage
+```
+reddit-migrate export [options]
+```
+
+##### Options
+- `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
+- `-o <path>`, `--output <path>`: Path of the output file.
+- `-p`, `--pretty`: Whether to prettify the output JSON.
+
+## License
+
+This project is licensed under the [**MIT License**](mit-license). Check out [LICENSE.md](license) for more info.
+
+## TODO
+
+- [ ] Add an option to specify which data should be import/exported/migrated, something like `--types subreddits,follows,blocks`.
+- [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
+- [ ] Add a feature to mass delete comments and posts, optionally editing them before.
+
+[mit-license]: https://en.wikipedia.org/wiki/MIT_License
+[license]: https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md
