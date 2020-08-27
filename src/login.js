@@ -19,6 +19,6 @@ module.exports = async function login(credentials, prefix = "") {
         process.exit(1)
     })
 
-    spinner.succeed(formatSuccess(`Successfully logged in as {${username}}.\n`))
+    spinner.succeed(formatSuccess(`Successfully logged in as {${username}}.`))
     return reddit
 }
