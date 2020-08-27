@@ -16,5 +16,6 @@ module.exports = async function exportData(reddit) {
         preferences: await exportPreferences(reddit)
     }
     data.exported_at = new Date().toISOString()
+    console.log()
     return data
 }
