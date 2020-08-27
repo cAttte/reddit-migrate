@@ -11,11 +11,11 @@ module.exports = async function exportSubscriptions(reddit) {
     }
     subscriptions = Array.from(subscriptions.map(sub => sub.display_name))
     const data = {
-        subreddits: subscriptions.filter(sub => !sub.startsWith("u_")),
-        users: subscriptions.filter(sub => sub.startsWith("u_")).map(user => user.slice(2))
+        subscriptions: subscriptions.filter(sub => !sub.startsWith("u_")),
+        follows: subscriptions.filter(sub => sub.startsWith("u_")).map(user => user.slice(2))
     }
     spinner.stop()
-    success(`Retrieved {${data.subreddits.length}} subreddits.`)
-    success(`Retrieved {${data.users.length}} followed users.`)
+    success(`Retrieved {${data.subscriptions.length}} subreddits.`)
+    success(`Retrieved {${data.follows.length}} followed users.`)
     return data
 }

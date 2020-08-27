@@ -8,7 +8,7 @@ const exportPreferences = require("./export/preferences")
 module.exports = async function exportData(reddit) {
     const data = {
         exported_at: null,
-        ...await exportSubscriptions(reddit), // { subreddits, users }
+        ...await exportSubscriptions(reddit), // { subscriptions, follows }
         friends: await exportFriends(reddit),
         blocked: await exportBlocked(reddit),
         multireddits: await exportMultireddits(reddit),
