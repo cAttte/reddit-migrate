@@ -61,13 +61,10 @@ reddit-migrate export [options]
 
 ## License
 
-This project is licensed under the [**MIT License**](mit-license). Check out [LICENSE.md](license) for more info.
+This project is licensed under the [**MIT License**](https://en.wikipedia.org/wiki/MIT_License). Check out [LICENSE.md](https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md) for more info.
 
 ## TODO
 
 - [ ] Add an option to specify which data should be import/exported/migrated, something like `--types subreddits,follows,blocks`.
 - [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
 - [ ] Add a feature to mass delete comments and posts, optionally editing them before.
-
-[mit-license]: https://en.wikipedia.org/wiki/MIT_License
-[license]: https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md
