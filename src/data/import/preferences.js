@@ -1,4 +1,4 @@
-const { formatSuccess, spin } = require("../../util")
+const { formatSuccess, spin, error } = require("../../util")
 
 module.exports = async function importPreferences(reddit, data) {
     if (!data || typeof data !== "object" || !Object.entries(data).length)
