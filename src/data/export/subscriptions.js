@@ -1,6 +1,6 @@
 const { spin, highlight, success } = require("../../util")
 
-module.exports = async function exportSubscriptions(reddit) {
+module.exports = async function exportSubscriptions(reddit, which) {
     const spinner = spin("Retrieving subscriptions...")
     let subscriptions = reddit.getSubscriptions()
     let finished = false
@@ -15,7 +15,7 @@ module.exports = async function exportSubscriptions(reddit) {
         follows: subscriptions.filter(sub => sub.startsWith("u_")).map(user => user.slice(2))
     }
     spinner.stop()
-    success(`Retrieved {${data.subscriptions.length}} subreddits.`)
-    success(`Retrieved {${data.follows.length}} followed users.`)
+    if (which.subscriptions) success(`Retrieved {${data.subscriptions.length}} subreddits.`)
+    if (which.follows) success(`Retrieved {${data.follows.length}} followed users.`)
     return data
 }
