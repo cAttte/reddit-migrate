@@ -52,6 +52,7 @@ reddit-migrate export [options]
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
 - `-o <path>`, `--output <path>`: Path of the output file.
 - `-p`, `--pretty`: Whether to prettify the output JSON.
+- `-w`, `--overwrite`: Avoid the 'overwrite?' prompt if file already exists.
 - `-? <list>`, `--which <list>`: A comma-separated list of attributes to export, or 'all'.
 
 ### Credentials
