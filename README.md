@@ -17,15 +17,9 @@ reddit-migrate [command] [options]
 
 #### help
 Display command help.
-```
-reddit-migrate help [command]
-```
 
 #### migrate
 Migrate to a new reddit account.
-```
-reddit-migrate migrate [options]
-```
 
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
@@ -33,9 +27,6 @@ reddit-migrate migrate [options]
 
 #### import
 Import data to a reddit account.
-```
-reddit-migrate import [options]
-```
 
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
@@ -44,9 +35,6 @@ reddit-migrate import [options]
 
 #### export
 Export data from a reddit account.
-```
-reddit-migrate export [options]
-```
 
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
@@ -57,9 +45,6 @@ reddit-migrate export [options]
 
 #### purge
 Mass-delete reddit account content.
-```
-reddit-migrate purge [options]
-```
 
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
@@ -80,11 +65,9 @@ Check out [**example.env**][example-env] to find out how the file should look fo
 - Your client ID will be shown below the app name and type. The secret, next to the other app info.
 
 ## License
-
 This project uses the [**MIT License**][mit-license]. [Check it out][license-md] for more info.
 
 ## TODO
-
 - [ ] Migrate/import profile picture and banner; these are not imported correctly with the URLs.
 - [x] Add an option to specify which data should be imported/exported/migrated.
 - [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
