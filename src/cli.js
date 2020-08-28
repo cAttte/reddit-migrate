@@ -46,7 +46,7 @@ async function main() {
     cli.command("migrate")
         .description("Migrate to a new reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
-        .option("-?, --which <list>", "A comma-separated list of attributes to migrate, or 'all'", handleWhich, "all")
+        .option("-?, --which <list>", "A comma-separated list of attributes to migrate, or 'all'", handleWhich, handleWhich("all"))
         .action(migrateCommand.bind(cli))
 
     cli.command("export")
@@ -55,14 +55,14 @@ async function main() {
         .requiredOption("-o, --output <path>", "Path of output file")
         .option("-p, --pretty", "Whether to prettify the output JSON")
         .option("-w, --overwrite", "Avoid the 'overwrite?' prompt if file already exists")
-        .option("-?, --which <list>", "A comma-separated list of attributes to export, or 'all'", handleWhich, "all")
+        .option("-?, --which <list>", "A comma-separated list of attributes to export, or 'all'", handleWhich, handleWhich("all"))
         .action(exportCommand.bind(cli))
 
     cli.command("import")
         .description("Import data to a reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
         .requiredOption("-i, --input <path>", "Path of input file")
-        .option("-?, --which <list>", "A comma-separated list of attributes to import, or 'all'", handleWhich, "all")
+        .option("-?, --which <list>", "A comma-separated list of attributes to import, or 'all'", handleWhich, handleWhich("all"))
         .action(importCommand.bind(cli))
 
     cli.commands = cli.commands
