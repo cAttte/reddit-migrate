@@ -1,6 +1,6 @@
 {
   "name": "reddit-migrate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A CLI written in JavaScript to migrate, export and import reddit account data!",
   "bin": {
     "reddit-migrate": "src/cli.js"
