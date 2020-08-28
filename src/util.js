@@ -25,6 +25,7 @@ const formatWarning = message => highlight(message, "yellow")
 const warning = message => console.log(`${symbols.warning} ${formatWarning(message)}`)
 const formatError = message => highlight(message, "red")
 const error = (message, exit = true) => {
+    if (process.spinner) process.spinner.stop()
     console.log(`${symbols.error} ${formatError(message)}`)
     if (exit) process.exit(1)
 }
@@ -35,6 +36,7 @@ const spin = (message, options = {}) => {
         color: "yellow",
         ...options
     })
+    process.spinner = spinner
     return spinner.start()
 }
 
