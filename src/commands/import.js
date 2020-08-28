@@ -7,7 +7,7 @@ const login = require("../login")
 const importData = require("../data/import")
 
 module.exports = async function importCommand(self) {
-    const credentials = await loadCredentials(this, false)
+    const credentials = await loadCredentials(self, false)
     const reddit = await login(credentials)
     const input = path.resolve(self.input)
     const spinner = spin(`Reading data from {${input}}...`)
