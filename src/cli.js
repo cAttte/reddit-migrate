@@ -7,6 +7,7 @@ const helpCommand = require("./commands/help")
 const migrateCommand = require("./commands/migrate")
 const exportCommand = require("./commands/export")
 const importCommand = require("./commands/import")
+const purgeCommand = require("./commands/purge")
 const override = require("./overrides")
 
 process.on("unhandledRejection", ({ message, stack }) => {
@@ -27,6 +28,17 @@ function handleWhich(value) {
         if (array.includes(attribute) || value.toLowerCase() === "all")
             result[attribute] = true
     return result
+}
+
+const submissionTypes = ["posts", "comments", "all"]
+function handlePurgeWhich(value) {
+    value = value.toLowerCase()
+    if (!submissionTypes.includes(value))
+        error(`{--which} must be 'posts', 'comments', or 'all'.`)
+
+    if (value === "posts") return { posts: true }
+    else if (value === "comments") return { comments: true }
+    else return { posts: true, comments: true }
 }
 
 async function main() {
@@ -64,6 +76,13 @@ async function main() {
         .requiredOption("-i, --input <path>", "Path of input file")
         .option("-?, --which <list>", "A comma-separated list of attributes to import, or 'all'", handleWhich, handleWhich("all"))
         .action(importCommand.bind(cli))
+
+    cli.command("purge")
+        .description("Mass-delete reddit account content")
+        .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
+        .option("-d, --edit <text>", "Text to edit messages and posts to before deleting")
+        .option("-?, --which <type>", "Submission type to delete; 'posts', 'comments', or 'all'", handlePurgeWhich, handlePurgeWhich("all"))
+        .action(purgeCommand.bind(cli))
 
     cli.commands = cli.commands
         .map(c => c.helpOption(`--${Math.random()}`, ""))
