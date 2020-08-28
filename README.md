@@ -1,7 +1,7 @@
 # reddit-migrate
-A CLI written in JavaScript to migrate, export and import reddit account data!
+A CLI written in JavaScript to migrate, export, and import reddit account data!
 
-Migrates subscribed subreddits, followed users, friends, blocked users, multireddits, profile settings and account preferences.
+Migrates subscribed subreddits, followed users, friends, blocked users, multireddits, profile settings, and account preferences.
 
 ## Installation
 ```
@@ -60,17 +60,17 @@ Check out [**example.env**](https://github.com/cAttte/reddit-migrate/blob/master
 
 #### Obtaining CLIENT_ID and CLIENT_SECRET
 - Head over to the [**Apps**](https://www.reddit.com/prefs/apps) section of your reddit account preferences.
-- Click the **create app** button.
-- Put whatever in the **name** and **redirect uri** fields. Make sure to select the **script** app type.
-- Your client ID will show below the **"personal use script,"** which is below the app name. The secret will be shown next to the other app info.
+- Click on the **create app** button.
+- Type whatever in the **name** and **redirect URI** fields. Make sure to select the **script** app type.
+- Your client ID will be shown below the app name and type. The secret, next to the other app info.
 
 ## License
 
-This project is licensed under the [**MIT License**](https://en.wikipedia.org/wiki/MIT_License). Check out [LICENSE.md](https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md) for more info.
+This project uses the [**MIT License**](https://en.wikipedia.org/wiki/MIT_License). [Check it out](https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md) for more info.
 
 ## TODO
 
 - [ ] Migrate/import profile picture and banner; these are not imported correctly with the URLs.
-- [ ] Add an option to specify which data should be import/exported/migrated, something like `--types subreddits,follows,blocks`.
+- [ ] Add an option to specify which data should be imported/exported/migrated.
 - [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
 - [ ] Add a feature to mass delete comments and posts, optionally editing them before.
