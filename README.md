@@ -29,6 +29,7 @@ reddit-migrate migrate [options]
 
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
+- `-? <list>`, `--which <list>`: A comma-separated list of attributes to migrate, or 'all'.
 
 #### import
 Import data to a reddit account.
@@ -39,6 +40,7 @@ reddit-migrate import [options]
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
 - `-i <path>`, `--input <path>`: Path of the input file.
+- `-? <list>`, `--which <list>`: A comma-separated list of attributes to import, or 'all'.
 
 #### export
 Export data from a reddit account.
@@ -50,6 +52,7 @@ reddit-migrate export [options]
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
 - `-o <path>`, `--output <path>`: Path of the output file.
 - `-p`, `--pretty`: Whether to prettify the output JSON.
+- `-? <list>`, `--which <list>`: A comma-separated list of attributes to export, or 'all'.
 
 ### Credentials
 As seen in the command options, you can pass the path/filename of a `.env` file, containing the credentials of the reddit account(s). However, if it's not provided (or the credentials are not included in the file), the CLI will prompt you to enter them:
@@ -71,7 +74,7 @@ This project uses the [**MIT License**][mit-license]. [Check it out][license-md]
 ## TODO
 
 - [ ] Migrate/import profile picture and banner; these are not imported correctly with the URLs.
-- [ ] Add an option to specify which data should be imported/exported/migrated.
+- [x] Add an option to specify which data should be imported/exported/migrated.
 - [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
 - [ ] Add a feature to mass delete comments and posts, optionally editing them before.
 
