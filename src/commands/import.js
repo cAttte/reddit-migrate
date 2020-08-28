@@ -22,5 +22,5 @@ module.exports = async function importCommand(self) {
     const exportDate = data.exported_at ? new Date(data.exported_at) : NaN
     if (!isNaN(exportDate)) console.log(formatSuccess(`  Exported at {${exportDate}}.`))
 
-    await importData(reddit, data)
+    await importData(reddit, data, self.which)
 }

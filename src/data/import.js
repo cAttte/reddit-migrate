@@ -5,11 +5,14 @@ const importMultireddits = require("./import/multireddits")
 const importProfile = require("./import/profile")
 const importPreferences = require("./import/preferences")
 
-module.exports = async function importData(reddit, data) {
-    await importSubscriptions(reddit, data.subscriptions, data.follows)
-    await importFriends(reddit, data.friends)
-    await importBlocked(reddit, data.blocked)
-    await importMultireddits(reddit, data.multireddits)
-    await importProfile(reddit, data.profile)
-    await importPreferences(reddit, data.preferences)
+module.exports = async function importData(reddit, data, which) {
+    if (which.subscriptions || which.follows) await importSubscriptions(reddit,
+        which.subscriptions ? data.subscriptions : null,
+        which.follows ? data.follows : null
+    )
+    if (which.friends) await importFriends(reddit, data.friends)
+    if (which.blocked) await importBlocked(reddit, data.blocked)
+    if (which.multireddits) await importMultireddits(reddit, data.multireddits)
+    if (which.profile) await importProfile(reddit, data.profile)
+    if (which.preferences) await importPreferences(reddit, data.preferences)
 }
