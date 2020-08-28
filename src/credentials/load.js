@@ -4,7 +4,7 @@ const chalk = require("chalk")
 const dotenv = require("dotenv")
 const inquirer = require("inquirer")
 const validateCredentials = require("./validate")
-const { symbols, blue, formatSuccess, formatError, spin } = require("../util")
+const { symbols, blue, formatSuccess, formatError, spin, error } = require("../util")
 
 const prettify = (name) => name.replace(/_/g, " ").toLowerCase()
 
