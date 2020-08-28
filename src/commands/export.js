@@ -9,7 +9,7 @@ const login = require("../login")
 const exportData = require("../data/export")
 
 module.exports = async function exportCommand(self) {
-    const credentials = await loadCredentials(this, false)
+    const credentials = await loadCredentials(self, false)
     const reddit = await login(credentials)
     const data = await exportData(reddit, self.which)
     const output = path.resolve(self.output)
