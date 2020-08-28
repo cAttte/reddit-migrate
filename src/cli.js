@@ -54,7 +54,7 @@ async function main() {
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
         .requiredOption("-o, --output <path>", "Path of output file")
         .option("-p, --pretty", "Whether to prettify the output JSON")
-        .option("-w, --overwrite", "Avoid the 'overwrite?' prompt if file already exists.")
+        .option("-w, --overwrite", "Avoid the 'overwrite?' prompt if file already exists")
         .option("-?, --which <list>", "A comma-separated list of attributes to export, or 'all'", handleWhich, "all")
         .action(exportCommand.bind(cli))
 
