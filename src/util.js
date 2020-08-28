@@ -3,6 +3,8 @@ const logSymbols = require("log-symbols")
 const chalk = require("chalk")
 const ora = require("ora")
 
+const noop = () => {}
+
 // colors
 const orange = chalk.rgb(255, 69, 0)
 const orangeString = "rgb(255,69,0)"
@@ -41,6 +43,7 @@ const spin = (message, options = {}) => {
 }
 
 module.exports = {
+    noop,
     orange,
     orangeString,
     bgOrange,
