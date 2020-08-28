@@ -34,6 +34,7 @@ async function main() {
 
     cli.name("reddit-migrate")
         .usage("[command] [options]")
+        .action(helpCommand.bind(cli))
         .helpOption(`--${Math.random()}`, "")
             // this is kinda the only way i thought of to "remove" the help option...
     override(cli)
