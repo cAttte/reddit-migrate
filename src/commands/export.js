@@ -17,15 +17,14 @@ module.exports = async function exportCommand(self) {
 
     let write = true
     const exists = await fs.stat(output).catch(() => false)
-    if (exists) {
+    if (exists && !self.overwrite) {
         spinner.stop()
-        const { overwrite } = await inquirer.prompt({
-            name: "overwrite",
+        write = process.stdin.isTTY ? (await inquirer.prompt({
+            name: "o",
             type: "confirm",
             message: chalk.reset(`Overwrite ${blue(self.output)}?`),
             prefix: symbols.info
-        })
-        write = overwrite
+        })).o : false
     }
 
     if (write)
