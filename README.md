@@ -55,6 +55,17 @@ reddit-migrate export [options]
 - `-w`, `--overwrite`: Avoid the 'overwrite?' prompt if file already exists.
 - `-? <list>`, `--which <list>`: A comma-separated list of attributes to export, or 'all'.
 
+#### purge
+Mass-delete reddit account content.
+```
+reddit-migrate purge [options]
+```
+
+**Options:**
+- `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
+- `-d <text>`, `--edit <text>`: Text to edit messages and posts to before deleting.
+- `-? <type>`, `--which <type>`: Submission type to delete; 'posts', 'comments', or 'all'.
+
 ### Credentials
 As seen in the command options, you can pass the path/filename of a `.env` file, containing the credentials of the reddit account(s). However, if it's not provided (or the credentials are not included in the file), the CLI will prompt you to enter them:
 
@@ -77,7 +88,7 @@ This project uses the [**MIT License**][mit-license]. [Check it out][license-md]
 - [ ] Migrate/import profile picture and banner; these are not imported correctly with the URLs.
 - [x] Add an option to specify which data should be imported/exported/migrated.
 - [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
-- [ ] Add a feature to mass delete comments and posts, optionally editing them before.
+- [x] Add a feature to mass delete comments and posts, optionally editing them before.
 
 <!-- References -->
 [carbon-credentials]: https://i.imgur.com/f0RoKaC.png
