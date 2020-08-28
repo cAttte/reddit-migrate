@@ -34,9 +34,6 @@ async function main() {
 
     cli.name("reddit-migrate")
         .usage("[command] [options]")
-        .action(migrateCommand.bind(cli))
-        .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
-        .option("-?, --which <list>", "A comma-separated list of attributes to migrate, or 'all'", handleWhich, "all")
         .helpOption(`--${Math.random()}`, "")
             // this is kinda the only way i thought of to "remove" the help option...
     override(cli)
