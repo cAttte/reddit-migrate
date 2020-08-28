@@ -16,6 +16,19 @@ process.on("unhandledRejection", ({ message, stack }) => {
     process.exit(1)
 })
 
+const attributes = ["subscriptions", "follows", "friends", "blocked", "multireddits", "profile", "preferences"]
+function handleWhich(value) {
+    const result = {}
+    const array = value.toLowerCase().split(",")
+    for (inputAttribute of array)
+        if (!attributes.includes(inputAttribute) && inputAttribute !== "all")
+            error(`Unknown data attribute {${inputAttribute}}.`)
+    for (attribute of attributes)
+        if (array.includes(attribute) || value.toLowerCase() === "all")
+            result[attribute] = true
+    return result
+}
+
 async function main() {
     console.log(chalk`{${orangeString} reddit-migrate} {${bgOrangeString}  }\n`)
 
@@ -23,6 +36,7 @@ async function main() {
         .usage("[command] [options]")
         .action(migrateCommand.bind(cli))
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
+        .option("-?, --which <list>", "A comma-separated list of attributes to migrate, or 'all'", handleWhich, "all")
         .helpOption(`--${Math.random()}`, "")
             // this is kinda the only way i thought of to "remove" the help option...
     override(cli)
@@ -34,6 +48,7 @@ async function main() {
     cli.command("migrate")
         .description("Migrate to a new reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
+        .option("-?, --which <list>", "A comma-separated list of attributes to migrate, or 'all'", handleWhich, "all")
         .action(migrateCommand.bind(cli))
 
     cli.command("export")
@@ -41,12 +56,14 @@ async function main() {
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
         .requiredOption("-o, --output <path>", "Path of output file")
         .option("-p, --pretty", "Whether to prettify the output JSON")
+        .option("-?, --which <list>", "A comma-separated list of attributes to export, or 'all'", handleWhich, "all")
         .action(exportCommand.bind(cli))
 
     cli.command("import")
         .description("Import data to a reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
         .requiredOption("-i, --input <path>", "Path of input file")
+        .option("-?, --which <list>", "A comma-separated list of attributes to import, or 'all'", handleWhich, "all")
         .action(importCommand.bind(cli))
 
     cli.commands = cli.commands
