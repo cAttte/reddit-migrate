@@ -54,19 +54,19 @@ reddit-migrate export [options]
 ### Credentials
 As seen in the command options, you can pass the path/filename of a `.env` file, containing the credentials of the reddit account(s). However, if it's not provided (or the credentials are not included in the file), the CLI will prompt you to enter them:
 
-![](https://i.imgur.com/f0RoKaC.png)
+![][carbon-credentials]
 
-Check out [**example.env**](https://github.com/cAttte/reddit-migrate/blob/master/example.env) to find out how the file should look for each command.
+Check out [**example.env**][example-env] to find out how the file should look for each command.
 
 #### Obtaining CLIENT_ID and CLIENT_SECRET
-- Head over to the [**Apps**](https://www.reddit.com/prefs/apps) section of your reddit account preferences.
+- Head over to the [**Apps**][apps] section of your reddit account preferences.
 - Click on the **create app** button.
 - Type whatever in the **name** and **redirect URI** fields. Make sure to select the **script** app type.
 - Your client ID will be shown below the app name and type. The secret, next to the other app info.
 
 ## License
 
-This project uses the [**MIT License**](https://en.wikipedia.org/wiki/MIT_License). [Check it out](https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md) for more info.
+This project uses the [**MIT License**][mit-license]. [Check it out][license-md] for more info.
 
 ## TODO
 
@@ -74,3 +74,10 @@ This project uses the [**MIT License**](https://en.wikipedia.org/wiki/MIT_Licens
 - [ ] Add an option to specify which data should be imported/exported/migrated.
 - [ ] Add a feature to "clear" data; unsubscribe from all subreddits, unfollow everyone, etc.
 - [ ] Add a feature to mass delete comments and posts, optionally editing them before.
+
+<!-- References -->
+[carbon-credentials]: https://i.imgur.com/f0RoKaC.png
+[example-env]: https://github.com/cAttte/reddit-migrate/blob/master/example.env
+[apps]: https://www.reddit.com/prefs/apps
+[mit-license]: https://en.wikipedia.org/wiki/MIT_License
+[license-md]: https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md
