@@ -3,6 +3,8 @@ A CLI written in JavaScript to migrate, export, import, and purge reddit account
 
 It migrates/exports/imports subscribed subreddits, followed users, friends, blocked users, multireddits, profile settings, and account preferences. It can also purge (mass-delete) your comments and submissions.
 
+![][term-migrate]
+
 ## Installation
 ```
 npm i -g cAttte/reddit-migrate
@@ -54,7 +56,7 @@ Mass-delete reddit account content.
 ### Credentials
 As seen in the command options, you can pass the path/filename of a `.env` file, containing the credentials of the reddit account(s). However, if it's not provided (or the credentials are not included in the file), the CLI will prompt you to enter them:
 
-![][carbon-credentials]
+![][term-credentials]
 
 Check out [**example.env**][example-env] to find out how the file should look for each command.
 
@@ -74,8 +76,10 @@ This project uses the [**MIT License**][mit-license]. [Check it out][license-md]
 - [x] Add a feature to mass delete comments and posts, optionally editing them before.
 
 <!-- References -->
-[carbon-credentials]: https://i.imgur.com/f0RoKaC.png
 [example-env]: https://github.com/cAttte/reddit-migrate/blob/master/example.env
 [apps]: https://www.reddit.com/prefs/apps
 [mit-license]: https://en.wikipedia.org/wiki/MIT_License
 [license-md]: https://github.com/cAttte/reddit-migrate/blob/master/LICENSE.md
+
+[term-migrate]: https://raw.githubusercontent.com/cAttte/reddit-migrate/master/terminal/migrate.svg
+[term-credentials]: https://raw.githubusercontent.com/cAttte/reddit-migrate/master/terminal/credentials.svg
