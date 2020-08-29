@@ -32,7 +32,7 @@ Import data to a reddit account.
 
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
-- `-i <path>`, `--input <path>`: Path of the input file.
+- `-i <path>`, `--input <path>`: Path of the input file. **(required)**
 - `-? <list>`, `--which <list>`: A comma-separated list of attributes to import, or 'all'.
 
 #### export
@@ -40,7 +40,7 @@ Export data from a reddit account.
 
 **Options:**
 - `-e <path>`, `--env-file <path>`: Path of the .env file to load credentials from.
-- `-o <path>`, `--output <path>`: Path of the output file.
+- `-o <path>`, `--output <path>`: Path of the output file. **(required)**
 - `-p`, `--pretty`: Whether to prettify the output JSON.
 - `-w`, `--overwrite`: Avoid the 'overwrite?' prompt if file already exists.
 - `-? <list>`, `--which <list>`: A comma-separated list of attributes to export, or 'all'.
