@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import chalk from "chalk"
-import { program as cli } from "commander"
+import commander from "commander"
+import RedditMigrate from "./RedditMigrate"
 import { Attributes } from "./data/interfaces/Attributes"
 
 import { orangeString, bgOrangeString, error } from "./util"
@@ -47,6 +48,7 @@ function handlePurgeWhich(value: string): Partial<Record<"posts" | "comments", t
 async function main() {
     console.log(chalk`{${orangeString} reddit-migrate} {${bgOrangeString}  }\n`)
 
+    const cli = new commander.Command() as RedditMigrate
     cli.name("reddit-migrate").usage("[command] [options]").action(helpCommand.bind(cli))
     override(cli)
 
