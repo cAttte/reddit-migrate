@@ -22,6 +22,6 @@ export default interface Data {
     friends: string[]
     blocked: string[]
     multireddits: Multireddit[]
-    profile: Record<string, string>
-    preferences: Record<string, string>
+    profile: Record<string, any>
+    preferences: Record<string, any>
 }
