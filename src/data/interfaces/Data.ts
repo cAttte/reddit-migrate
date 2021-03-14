@@ -7,7 +7,6 @@ import {
 export interface Multireddit {
     name: string
     description: string
-    over_18: boolean
     visibility: MultiRedditVisibility
     icon_name: MultiRedditIcon
     key_color: string
