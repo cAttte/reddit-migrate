@@ -24,5 +24,5 @@ export default async function exportData(reddit: Snoowrap, which: Which) {
     data.exported_at = new Date().toISOString()
 
     console.log()
-    return data
+    return data as Data // non-Partial
 }
