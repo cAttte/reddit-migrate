@@ -1,4 +1,8 @@
-module.exports = function validateCredentials(name, input, oldInput) {
+export default function validateCredentials(
+    name: string,
+    input: string,
+    oldInput: string
+): true | string {
     if (name.endsWith("USERNAME")) {
         if (input.length < 3 || input.length > 20)
             return "Username must be between 3 and 20 characters."
