@@ -4,7 +4,10 @@ import { formatSuccess, error, spin } from "./util"
 import { Credentials } from "./credentials/Credentials"
 import Snoowrap from "snoowrap"
 
-export async function login(credentials: Credentials, prefix: "OLD_" | "NEW_" | "" = "") {
+export default async function login(
+    credentials: Credentials,
+    prefix: "OLD_" | "NEW_" | "" = ""
+) {
     const username = credentials[prefix + "USERNAME"]
     const spinner = spin(`Attempting to login as {${username}}...`)
 
