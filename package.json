@@ -1,32 +1,25 @@
 {
-  "name": "reddit-migrate",
-  "version": "1.2.1",
-  "description": "A CLI written in JavaScript to migrate, export and import reddit account data!",
-  "bin": {
-    "reddit-migrate": "src/cli.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cAttte/reddit-migrate.git"
-  },
-  "author": "catte_",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cAttte/reddit-migrate/issues"
-  },
-  "homepage": "https://github.com/cAttte/reddit-migrate#readme",
-  "dependencies": {
-    "chalk": "^4.1.0",
-    "commander": "^6.1.0",
-    "common-tags": "^1.8.0",
-    "dotenv": "^8.2.0",
-    "inquirer": "^7.3.3",
-    "log-symbols": "^4.0.0",
-    "ora": "^5.0.0",
-    "snoowrap": "^1.21.0",
-    "strip-ansi": "^6.0.0"
-  },
-  "devDependencies": {
-    "prettier": "^2.2.1"
-  }
+    "name": "reddit-migrate",
+    "version": "1.2.1",
+    "description": "A CLI written in JavaScript to migrate, export and import reddit account data!",
+    "bin": "src/cli.js",
+    "repository": "cAttte/reddit-migrate",
+    "author": "catte_",
+    "license": "MIT",
+    "bugs": "https://github.com/cAttte/reddit-migrate/issues",
+    "homepage": "https://github.com/cAttte/reddit-migrate#readme",
+    "dependencies": {
+        "chalk": "^4.1.0",
+        "commander": "^6.1.0",
+        "common-tags": "^1.8.0",
+        "dotenv": "^8.2.0",
+        "inquirer": "^7.3.3",
+        "log-symbols": "^4.0.0",
+        "ora": "^5.0.0",
+        "snoowrap": "^1.21.0",
+        "strip-ansi": "^6.0.0"
+    },
+    "devDependencies": {
+        "prettier": "^2.2.1"
+    }
 }
