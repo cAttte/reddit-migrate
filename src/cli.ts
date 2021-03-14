@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import chalk from "chalk"
 import { program as cli } from "commander"
-import Attributes from "./data/Attributes"
+import { Attributes } from "./data/Attributes"
 
 import { orangeString, bgOrangeString, error } from "./util"
 import helpCommand from "./commands/help"
