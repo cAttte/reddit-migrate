@@ -25,7 +25,7 @@ function askValue(name: string, questionPrefix: string, oldValue?: string) {
 }
 
 const credentials = ["CLIENT_ID", "CLIENT_SECRET", "USERNAME", "PASSWORD"]
-module.exports = async function loadCredentials(
+export default async function loadCredentials(
     command: commander.Command,
     needBoth: boolean
 ) {
