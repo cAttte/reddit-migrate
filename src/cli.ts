@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import chalk from "chalk"
 import { program as cli } from "commander"
+import Attributes from "./data/Attributes"
 
 import { orangeString, bgOrangeString, error } from "./util"
 import helpCommand from "./commands/help"
@@ -19,16 +20,6 @@ process.on("unhandledRejection", (info: { message: string; stack: string }) => {
     console.log(prettyStack)
     process.exit(1)
 })
-
-enum Attributes {
-    "subscriptions",
-    "follows",
-    "friends",
-    "blocked",
-    "multireddits",
-    "profile",
-    "preferences"
-}
 
 function handleWhich(value: string) {
     const result: Partial<Record<keyof Attributes, true>> = {}
