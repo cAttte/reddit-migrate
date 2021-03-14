@@ -9,6 +9,7 @@ export interface Multireddit {
 }
 
 export default interface Data {
+    exported_at?: string
     subscriptions: string[]
     follows: string[]
     friends: string[]
