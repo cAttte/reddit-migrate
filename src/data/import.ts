@@ -1,17 +1,21 @@
-const importSubscriptions = require("./import/subscriptions")
-const importFriends = require("./import/friends")
-const importBlocked = require("./import/blocked")
-const importMultireddits = require("./import/multireddits")
-const importProfile = require("./import/profile")
-const importPreferences = require("./import/preferences")
+import Snoowrap from "snoowrap"
+import importSubscriptions from "./import/subscriptions"
+import importFriends from "./import/friends"
+import importBlocked from "./import/blocked"
+import importMultireddits from "./import/multireddits"
+import importProfile from "./import/profile"
+import importPreferences from "./import/preferences"
+import Data from "./Data"
+import Which from "./Which"
 
-module.exports = async function importData(reddit, data, which) {
+export default async function importData(reddit: Snoowrap, data: Data, which: Which) {
     if (which.subscriptions || which.follows)
         await importSubscriptions(
             reddit,
             which.subscriptions ? data.subscriptions : null,
             which.follows ? data.follows : null
         )
+
     if (which.friends) await importFriends(reddit, data.friends)
     if (which.blocked) await importBlocked(reddit, data.blocked)
     if (which.multireddits) await importMultireddits(reddit, data.multireddits)
