@@ -16,7 +16,6 @@
     "dependencies": {
         "chalk": "^4.1.0",
         "commander": "^6.1.0",
-        "common-tags": "^1.8.0",
         "dotenv": "^8.2.0",
         "inquirer": "^7.3.3",
         "log-symbols": "^4.0.0",
