@@ -5,8 +5,8 @@ import exportBlocked from "./export/blocked"
 import exportMultireddits from "./export/multireddits"
 import exportProfile from "./export/profile"
 import exportPreferences from "./export/preferences"
-import Data from "./Data"
-import Which from "./Which"
+import Data from "./interfaces/Data"
+import Which from "./interfaces/Which"
 
 module.exports = async function exportData(reddit: Snoowrap, which: Which) {
     const data: Partial<Data> = { exported_at: null }

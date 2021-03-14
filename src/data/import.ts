@@ -5,8 +5,8 @@ import importBlocked from "./import/blocked"
 import importMultireddits from "./import/multireddits"
 import importProfile from "./import/profile"
 import importPreferences from "./import/preferences"
-import Data from "./Data"
-import Which from "./Which"
+import Data from "./interfaces/Data"
+import Which from "./interfaces/Which"
 
 export default async function importData(reddit: Snoowrap, data: Data, which: Which) {
     if (which.subscriptions || which.follows)

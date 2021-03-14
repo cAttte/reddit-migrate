@@ -1,7 +1,7 @@
 import Snoowrap from "snoowrap"
 import { noop, highlight, spin, formatError, formatSuccess, success } from "../util"
-import { Submission } from "./Attributes"
-import Which from "./Which"
+import { Submission } from "./interfaces/Attributes"
+import Which from "./interfaces/Which"
 
 type FetchOptions = { type: Submission; method: "getComments" | "getSubmissions" }
 async function fetch(reddit: Snoowrap, { type, method }: FetchOptions) {
