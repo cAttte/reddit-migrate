@@ -23,6 +23,7 @@
         "strip-ansi": "^6.0.0"
     },
     "devDependencies": {
-        "prettier": "^2.2.1"
+        "prettier": "^2.2.1",
+        "typescript": "^4.2.3"
     }
 }
