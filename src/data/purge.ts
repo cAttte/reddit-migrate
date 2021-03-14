@@ -1,7 +1,8 @@
 import Snoowrap from "snoowrap"
 import { noop, highlight, spin, formatError, formatSuccess, success } from "../util"
+import { Submission } from "./Attributes"
+import Which from "./Which"
 
-type Submission = "comment" | "post"
 type FetchOptions = { type: Submission; method: "getComments" | "getSubmissions" }
 async function fetch(reddit: Snoowrap, { type, method }: FetchOptions) {
     const spinner = spin(`Fetching ${type}s...`)
@@ -52,11 +53,7 @@ async function _delete(
     }
 }
 
-export default async function purge(
-    reddit: Snoowrap,
-    edit: string,
-    which: Partial<Record<`${Submission}s`, true>>
-) {
+export default async function purge(reddit: Snoowrap, edit: string, which: Which<true>) {
     if (which.comments) {
         const comments = await fetch(reddit, { type: "comment", method: "getComments" })
         await _delete(comments, edit, { type: "comment" })

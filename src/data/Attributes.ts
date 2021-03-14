@@ -8,4 +8,10 @@ enum Attributes {
     "preferences"
 }
 
-export default Attributes
+type Submission = "post" | "comment"
+enum Submissions {
+    "posts",
+    "comments"
+}
+
+export { Attributes, Submission, Submissions }
