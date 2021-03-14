@@ -2,9 +2,13 @@
 
 A CLI written in JavaScript to migrate, export, import, and purge reddit account data!
 
-It migrates/exports/imports subscribed subreddits, followed users, friends, blocked users, multireddits, profile settings, and account preferences. It can also purge (mass-delete) your comments and submissions.
+<details><summary>Demo</summary>
 
 ![][term-migrate]
+
+</details>
+
+It migrates/exports/imports subscribed subreddits, followed users, friends, blocked users, multireddits, profile settings, and account preferences. It can also purge (mass-delete) your comments and submissions.
 
 ## Installation
 
