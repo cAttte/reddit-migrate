@@ -3,6 +3,7 @@ import chalk from "chalk"
 import commander from "commander"
 import RedditMigrate from "./RedditMigrate"
 import { Attributes } from "./data/interfaces/Attributes"
+import Which from "./data/interfaces/Which"
 
 import { orangeString, bgOrangeString, error } from "./util"
 import helpCommand from "./commands/help"
@@ -23,14 +24,14 @@ process.on("unhandledRejection", (info: { message: string; stack: string }) => {
 })
 
 function handleWhich(value: string) {
-    const result: Partial<Record<keyof Attributes, true>> = {}
+    const result: Which = {}
     const inputAttributes = value.toLowerCase().split(",")
     for (const input of inputAttributes)
         if (!Object.keys(Attributes).includes(input) && input !== "all")
             error(`Unknown data attribute {${input}}.`)
     for (const attribute of Object.keys(Attributes))
         if (inputAttributes.includes(attribute) || value.toLowerCase() === "all")
-            inputAttributes[attribute] = true
+            result[attribute] = true
     return result
 }
 
