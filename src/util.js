@@ -20,7 +20,8 @@ const symbols = {
 }
 
 // logging
-const highlight = (string, color) => string.replace(/{(.+?)}/g, (_, $1) => chalk[color + "Bright"]($1))
+const highlight = (string, color) =>
+    string.replace(/{(.+?)}/g, (_, $1) => chalk[color + "Bright"]($1))
 const formatSuccess = message => highlight(message, "green")
 const success = message => console.log(`${symbols.success} ${formatSuccess(message)}`)
 const formatWarning = message => highlight(message, "yellow")

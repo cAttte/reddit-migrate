@@ -11,10 +11,15 @@ module.exports = async function importCommand(self) {
     const reddit = await login(credentials)
     const input = path.resolve(self.input)
     const spinner = spin(`Reading data from {${input}}...`)
-    const data = await fs.readFile(input)
+    const data = await fs
+        .readFile(input)
         .then(input => JSON.parse(input))
         .catch(e => {
-            spinner.fail(formatError(`Couldn't read {${input}}: ${e.message.replace(/, open.+/, "")}`))
+            spinner.fail(
+                formatError(
+                    `Couldn't read {${input}}: ${e.message.replace(/, open.+/, "")}`
+                )
+            )
             process.exit(1)
         })
     spinner.succeed(formatSuccess(`Read data from {${input}}.`))

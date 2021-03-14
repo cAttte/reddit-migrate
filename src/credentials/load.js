@@ -6,10 +6,12 @@ const inquirer = require("inquirer")
 const validateCredentials = require("./validate")
 const { symbols, blue, formatSuccess, formatError, spin, error } = require("../util")
 
-const prettify = (name) => name.replace(/_/g, " ").toLowerCase()
+const prettify = name => name.replace(/_/g, " ").toLowerCase()
 
 function askValue(name, questionPrefix, oldValue) {
-    const question = chalk`{reset ${questionPrefix}, what's the} {bold ${prettify(name)}}?`
+    const question = chalk`{reset ${questionPrefix}, what's the} {bold ${prettify(
+        name
+    )}}?`
     return inquirer.prompt({
         name: name,
         message: question,
@@ -18,25 +20,29 @@ function askValue(name, questionPrefix, oldValue) {
             return validateCredentials(name, input, oldValue)
         },
         transformer(input) {
-            return blue(name.endsWith("PASSWORD") || name.endsWith("SECRET") ?
-                "*".repeat(input.length) : input)
+            return blue(
+                name.endsWith("PASSWORD") || name.endsWith("SECRET")
+                    ? "*".repeat(input.length)
+                    : input
+            )
         }
     })
 }
 
 const credentials = ["CLIENT_ID", "CLIENT_SECRET", "USERNAME", "PASSWORD"]
 module.exports = async function loadCredentials(command, needBoth) {
-    const credentialNames = needBoth ?
-        credentials.map(c => "OLD_" + c).concat(credentials.map(c => "NEW_" + c)) :
-        credentials
+    const credentialNames = needBoth
+        ? credentials.map(c => "OLD_" + c).concat(credentials.map(c => "NEW_" + c))
+        : credentials
 
     const filepath = command.envFile
     let fileRead = false
     const env = {}
     if (filepath) {
         const spinner = spin(`Loading {${filepath}}...`)
-        const buffer = await fs.promises.readFile(path.resolve(filepath))
-            .catch(() => { spinner.fail(formatError(`Couldn't read {${filepath}}.`)) })
+        const buffer = await fs.promises.readFile(path.resolve(filepath)).catch(() => {
+            spinner.fail(formatError(`Couldn't read {${filepath}}.`))
+        })
         if (buffer) {
             const parsed = dotenv.parse(buffer)
             Object.assign(env, parsed)
@@ -45,15 +51,17 @@ module.exports = async function loadCredentials(command, needBoth) {
         }
     }
 
-    if (!filepath && !process.stdin.isTTY)
-        error("Env file not provided.")
+    if (!filepath && !process.stdin.isTTY) error("Env file not provided.")
 
     for (name of credentialNames) {
         const oldName = name.startsWith("NEW") ? name.replace("NEW", "OLD") : null
         if (!env[name]) {
-            if (!process.stdin.isTTY)
-                error(`{${name}} not provided in env file.`)
-            const answer = await askValue(name, fileRead ? "Not provided in env file" : "Env file not provided", env[oldName])
+            if (!process.stdin.isTTY) error(`{${name}} not provided in env file.`)
+            const answer = await askValue(
+                name,
+                fileRead ? "Not provided in env file" : "Env file not provided",
+                env[oldName]
+            )
             env[name] = answer[name]
         } else {
             const error = validateCredentials(name, env[name], env[oldName])

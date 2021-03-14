@@ -3,14 +3,17 @@ const { highlight, formatSuccess, formatError, spin, error } = require("../../ut
 async function copyMultireddit(reddit, data) {
     let copied = null
     if (data.copied_from) {
-        const [username, multiname] = data.copied_from.match(/user\/([^/]+)\/m\/([^/]+)/).slice(1)
+        const [username, multiname] = data.copied_from
+            .match(/user\/([^/]+)\/m\/([^/]+)/)
+            .slice(1)
         if (!username || !multiname) throw new Error()
         const multi = await reddit.getUser(username).getMultireddit(multiname)
         copied = await multi.copy({ newName: data.name })
-        for (sub of data.subreddits) if (!copied.subreddits.map(s => s.display_name).includes(sub))
-            await copied.addSubreddit(sub)
-        for (sub of copied.subreddits.map(s => s.display_name)) if (!data.subreddits.includes(sub))
-            await copied.removeSubreddit(sub)
+        for (sub of data.subreddits)
+            if (!copied.subreddits.map(s => s.display_name).includes(sub))
+                await copied.addSubreddit(sub)
+        for (sub of copied.subreddits.map(s => s.display_name))
+            if (!data.subreddits.includes(sub)) await copied.removeSubreddit(sub)
     } else {
         copied = await reddit.createMultireddit({
             subreddits: data.subreddits,
@@ -39,12 +42,14 @@ module.exports = async function importMultireddits(reddit, data) {
         await copyMultireddit(reddit, multireddit)
             .then(() => succeeded++)
             .catch(() => failed++)
-        spinner.text = highlight(`Copying {${succeeded}} multireddits...`, "yellow")
-            + (failed ? highlight(` ({${failed}} failed)`, "red") : "")
+        spinner.text =
+            highlight(`Copying {${succeeded}} multireddits...`, "yellow") +
+            (failed ? highlight(` ({${failed}} failed)`, "red") : "")
     }
-    if (!succeeded)
-        spinner.fail(formatError(`Couldn't copy {${failed}} multireddits.`))
+    if (!succeeded) spinner.fail(formatError(`Couldn't copy {${failed}} multireddits.`))
     else
-        spinner.succeed(formatSuccess(`Copied {${succeeded}} multireddits.`)
-            + (failed ? formatError(` Couldn't copy {${failed}}.`) : ""))
+        spinner.succeed(
+            formatSuccess(`Copied {${succeeded}} multireddits.`) +
+                (failed ? formatError(` Couldn't copy {${failed}}.`) : "")
+        )
 }

@@ -7,13 +7,13 @@ module.exports = async function importPreferences(reddit, data) {
     const spinner = spin("Updating preferences...")
     const oldPreferences = await reddit.getPreferences()
 
-    await reddit.updatePreferences(data)
+    await reddit
+        .updatePreferences(data)
         .then(async () => {
             const newPreferences = await reddit.getPreferences()
             let updated = 0
             for (pref of Object.keys(newPreferences))
-                if (oldPreferences[pref] !== newPreferences[pref])
-                    updated++
+                if (oldPreferences[pref] !== newPreferences[pref]) updated++
             spinner.succeed(formatSuccess(`Updated {${updated}} preferences.`))
         })
         .catch(e => {

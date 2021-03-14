@@ -22,12 +22,14 @@ module.exports = async function importBlocked(reddit, data) {
         await block(user)
             .then(() => succeeded++)
             .catch(() => failed++)
-        spinner.text = highlight(`Blocking {${succeeded}} users...`, "yellow")
-            + (failed ? highlight(` ({${failed}} failed)`, "red") : "")
+        spinner.text =
+            highlight(`Blocking {${succeeded}} users...`, "yellow") +
+            (failed ? highlight(` ({${failed}} failed)`, "red") : "")
     }
-    if (!succeeded)
-        spinner.fail(formatError(`Couldn't block {${failed}} users.`))
+    if (!succeeded) spinner.fail(formatError(`Couldn't block {${failed}} users.`))
     else
-        spinner.succeed(formatSuccess(`Blocked {${succeeded}} users.`)
-            + (failed ? formatError(` Couldn't block {${failed}}.`) : ""))
+        spinner.succeed(
+            formatSuccess(`Blocked {${succeeded}} users.`) +
+                (failed ? formatError(` Couldn't block {${failed}}.`) : "")
+        )
 }

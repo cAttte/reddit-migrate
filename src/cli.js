@@ -12,12 +12,22 @@ const override = require("./overrides")
 
 process.on("unhandledRejection", ({ message, stack }) => {
     console.log(error(`Unexpected Error: {${message}}`))
-    const prettyStack = chalk.gray((stack.match(/    at(.+(reddit-migrate.src).+)/g) || []).join("\n"))
+    const prettyStack = chalk.gray(
+        (stack.match(/    at(.+(reddit-migrate.src).+)/g) || []).join("\n")
+    )
     console.log(prettyStack)
     process.exit(1)
 })
 
-const attributes = ["subscriptions", "follows", "friends", "blocked", "multireddits", "profile", "preferences"]
+const attributes = [
+    "subscriptions",
+    "follows",
+    "friends",
+    "blocked",
+    "multireddits",
+    "profile",
+    "preferences"
+]
 function handleWhich(value) {
     const result = {}
     const array = value.toLowerCase().split(",")
@@ -48,7 +58,7 @@ async function main() {
         .usage("[command] [options]")
         .action(helpCommand.bind(cli))
         .helpOption(`--${Math.random()}`, "")
-            // this is kinda the only way i thought of to "remove" the help option...
+    // this is kinda the only way i thought of to "remove" the help option...
     override(cli)
 
     cli.command("help [command]")
@@ -58,7 +68,12 @@ async function main() {
     cli.command("migrate")
         .description("Migrate to a new reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
-        .option("-?, --which <list>", "A comma-separated list of attributes to migrate, or 'all'", handleWhich, handleWhich("all"))
+        .option(
+            "-?, --which <list>",
+            "A comma-separated list of attributes to migrate, or 'all'",
+            handleWhich,
+            handleWhich("all")
+        )
         .action(migrateCommand.bind(cli))
 
     cli.command("export")
@@ -67,21 +82,36 @@ async function main() {
         .requiredOption("-o, --output <path>", "Path of output file")
         .option("-p, --pretty", "Whether to prettify the output JSON")
         .option("-w, --overwrite", "Avoid the 'overwrite?' prompt if file already exists")
-        .option("-?, --which <list>", "A comma-separated list of attributes to export, or 'all'", handleWhich, handleWhich("all"))
+        .option(
+            "-?, --which <list>",
+            "A comma-separated list of attributes to export, or 'all'",
+            handleWhich,
+            handleWhich("all")
+        )
         .action(exportCommand.bind(cli))
 
     cli.command("import")
         .description("Import data to a reddit account")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
         .requiredOption("-i, --input <path>", "Path of input file")
-        .option("-?, --which <list>", "A comma-separated list of attributes to import, or 'all'", handleWhich, handleWhich("all"))
+        .option(
+            "-?, --which <list>",
+            "A comma-separated list of attributes to import, or 'all'",
+            handleWhich,
+            handleWhich("all")
+        )
         .action(importCommand.bind(cli))
 
     cli.command("purge")
         .description("Mass-delete reddit account content")
         .option("-e, --env-file <path>", "Path of the .env file to load credentials from")
         .option("-d, --edit <text>", "Text to edit messages and posts to before deleting")
-        .option("-?, --which <type>", "Submission type to delete; 'posts', 'comments', or 'all'", handlePurgeWhich, handlePurgeWhich("all"))
+        .option(
+            "-?, --which <type>",
+            "Submission type to delete; 'posts', 'comments', or 'all'",
+            handlePurgeWhich,
+            handlePurgeWhich("all")
+        )
         .action(purgeCommand.bind(cli))
 
     cli.commands = cli.commands

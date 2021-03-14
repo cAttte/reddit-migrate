@@ -5,8 +5,11 @@ async function fetch(reddit, { object, method }) {
     let submissions = await reddit.getMe()[method]()
     let finished = false
     while (!finished) {
-        submissions = await submissions.fetchMore(({ amount: 100 }))
-        spinner.text = highlight(`Fetching {${submissions.length.toLocaleString()}} ${object}s...`, "yellow")
+        submissions = await submissions.fetchMore({ amount: 100 })
+        spinner.text = highlight(
+            `Fetching {${submissions.length.toLocaleString()}} ${object}s...`,
+            "yellow"
+        )
         finished = submissions.isFinished
     }
     spinner.stop()
@@ -20,17 +23,20 @@ async function _delete(submissions, edit, { object }) {
     let failed = 0
     for (submission of submissions) {
         if (edit && submission.body !== edit) await submission.edit(edit).catch(noop)
-        await submission.delete()
+        await submission
+            .delete()
             .then(() => succeeded++)
             .catch(() => failed++)
-        spinner.text = highlight(`Deleting {${succeeded}} ${object}s...`, "yellow")
-            + (failed ? highlight(` ({${failed}} failed)`, "red") : "")
+        spinner.text =
+            highlight(`Deleting {${succeeded}} ${object}s...`, "yellow") +
+            (failed ? highlight(` ({${failed}} failed)`, "red") : "")
     }
-    if (!succeeded)
-        spinner.fail(formatError(`Couldn't delete {${failed}} ${object}s.`))
+    if (!succeeded) spinner.fail(formatError(`Couldn't delete {${failed}} ${object}s.`))
     else
-        spinner.succeed(formatSuccess(`Deleted {${succeeded}} ${object}s.`)
-            + (failed ? formatError(` Couldn't delete {${failed}}.`) : ""))
+        spinner.succeed(
+            formatSuccess(`Deleted {${succeeded}} ${object}s.`) +
+                (failed ? formatError(` Couldn't delete {${failed}}.`) : "")
+        )
 }
 
 module.exports = async function purge(reddit, edit, which) {

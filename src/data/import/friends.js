@@ -9,15 +9,18 @@ module.exports = async function importFriends(reddit, data) {
     let failed = 0
     for (username of data) {
         const user = await reddit.getUser(username)
-        await user.friend()
+        await user
+            .friend()
             .then(() => succeeded++)
             .catch(() => failed++)
-        spinner.text = highlight(`Friending {${succeeded}} users...`, "yellow")
-            + (failed ? highlight(` ({${failed}} failed)`, "red") : "")
+        spinner.text =
+            highlight(`Friending {${succeeded}} users...`, "yellow") +
+            (failed ? highlight(` ({${failed}} failed)`, "red") : "")
     }
-    if (!succeeded)
-        spinner.fail(formatError(`Couldn't friend {${failed}} users.`))
+    if (!succeeded) spinner.fail(formatError(`Couldn't friend {${failed}} users.`))
     else
-        spinner.succeed(formatSuccess(`Friended {${succeeded}} users.`)
-            + (failed ? formatError(` Couldn't friend {${failed}}.`) : ""))
+        spinner.succeed(
+            formatSuccess(`Friended {${succeeded}} users.`) +
+                (failed ? formatError(` Couldn't friend {${failed}}.`) : "")
+        )
 }

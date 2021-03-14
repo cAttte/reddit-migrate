@@ -19,18 +19,26 @@ module.exports = async function exportCommand(self) {
     const exists = await fs.stat(output).catch(() => false)
     if (exists && !self.overwrite) {
         spinner.stop()
-        write = process.stdin.isTTY ? (await inquirer.prompt({
-            name: "o",
-            type: "confirm",
-            message: chalk.reset(`Overwrite ${blue(self.output)}?`),
-            prefix: symbols.info
-        })).o : false
+        write = process.stdin.isTTY
+            ? (
+                  await inquirer.prompt({
+                      name: "o",
+                      type: "confirm",
+                      message: chalk.reset(`Overwrite ${blue(self.output)}?`),
+                      prefix: symbols.info
+                  })
+              ).o
+            : false
     }
 
     if (write)
-        await fs.writeFile(output, JSON.stringify(data, null, self.pretty ? 4 : 0))
+        await fs
+            .writeFile(output, JSON.stringify(data, null, self.pretty ? 4 : 0))
             .then(() => spinner.succeed(formatSuccess(`Saved data to {${output}}.`)))
-            .catch(e => spinner.fail(formatError(`Couldn't save data to {${output}}: ${e.message}`)))
-    else
-        error(`Couldn't save data to {${output}}: File already exists.`, false)
+            .catch(e =>
+                spinner.fail(
+                    formatError(`Couldn't save data to {${output}}: ${e.message}`)
+                )
+            )
+    else error(`Couldn't save data to {${output}}: File already exists.`, false)
 }
