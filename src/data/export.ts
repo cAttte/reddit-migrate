@@ -8,7 +8,7 @@ import exportPreferences from "./export/preferences"
 import Data from "./interfaces/Data"
 import Which from "./interfaces/Which"
 
-module.exports = async function exportData(reddit: Snoowrap, which: Which) {
+export default async function exportData(reddit: Snoowrap, which: Which) {
     const data: Partial<Data> = { exported_at: null }
     if (which.subscriptions || which.follows) {
         const { subscriptions, follows } = await exportSubscriptions(reddit, which)
