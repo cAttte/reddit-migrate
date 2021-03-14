@@ -2,13 +2,14 @@
     "name": "reddit-migrate",
     "version": "1.2.1",
     "description": "A CLI written in JavaScript to migrate, export and import reddit account data!",
-    "bin": "src/cli.js",
+    "bin": "dist/cli.js",
     "repository": "cAttte/reddit-migrate",
     "author": "catte_",
     "license": "MIT",
     "bugs": "https://github.com/cAttte/reddit-migrate/issues",
     "homepage": "https://github.com/cAttte/reddit-migrate#readme",
     "scripts": {
+        "preinstall": "tsc",
         "format": "prettier --write src/",
         "build": "tsc",
         "watch": "tsc --watch"
