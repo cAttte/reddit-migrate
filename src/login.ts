@@ -19,6 +19,8 @@ export default async function login(
         password: credentials[prefix + "PASSWORD"]
     })
 
+    reddit.config({ continueAfterRatelimitError: true })
+
     // @ts-ignore: Snoowrap typings are broken
     await reddit.getMe().catch(() => error(`Couldn't log in as {${username}}.`))
     spinner.succeed(formatSuccess(`Successfully logged in as {${username}}.`))
