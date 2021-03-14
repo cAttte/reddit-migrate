@@ -1,9 +1,17 @@
+import {
+    MultiRedditIcon,
+    MultiRedditVisibility,
+    MultiRedditWeightingSchema
+} from "snoowrap/dist/objects/MultiReddit"
+
 export interface Multireddit {
     name: string
     description: string
     over_18: boolean
-    visibility: string
+    visibility: MultiRedditVisibility
+    icon_name: MultiRedditIcon
     key_color: string
+    weighting_scheme: MultiRedditWeightingSchema
     copied_from: string
     subreddits: string[]
 }
