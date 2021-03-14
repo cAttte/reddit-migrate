@@ -25,5 +25,8 @@
     "ora": "^5.0.0",
     "snoowrap": "^1.21.0",
     "strip-ansi": "^6.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
