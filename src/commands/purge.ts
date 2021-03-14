@@ -1,7 +1,7 @@
+import RedditMigrate from "../RedditMigrate"
 import loadCredentials from "../credentials/load"
 import login from "../login"
 import purge from "../data/purge"
-import RedditMigrate from "../RedditMigrate"
 import Which from "../data/interfaces/Which"
 
 export default async function purgeCommand(self: RedditMigrate) {
