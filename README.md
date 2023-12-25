@@ -1,6 +1,6 @@
 # reddit-migrate
 
-A CLI written in JavaScript to migrate, export, import, and purge reddit account data!
+A command-line tool to migrate, export, import, and purge reddit account data!
 
 <details><summary>Demo</summary>
 
